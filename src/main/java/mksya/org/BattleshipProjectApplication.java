@@ -11,6 +11,7 @@ import model.Spot;
 import enums.AXIS;
 import enums.DIRECTION;
 import enums.SHIPS;
+import model.Fleet;
 import model.Grid;
 import model.Ship;
 
@@ -27,13 +28,15 @@ public class BattleshipProjectApplication {
 				int rows=10;
 				int field[][]= new int[columns][rows];
 				List<Spot> spots = new ArrayList<Spot>();
-				grid.generateGrid(columns,rows,field,spots);
+				grid.generateGrid(columns,rows,field,spots);			
 				
 		//Generate ships
 				
-				Ship submarine= new Ship();
+
+				Ship submarine = new Ship();
 				String nameSub = null;
 				int sizeSub=3;
+				
 				List<Spot> spotsSubmarine = new ArrayList<Spot>();
 				System.out.println("Select axis");
 				AXIS axis = AXIS.valueOf(scan.nextLine());
@@ -42,17 +45,11 @@ public class BattleshipProjectApplication {
 				System.out.println("Select origin x,y");
 				int xOSub = scan.nextInt();
 				int yOSub = scan.nextInt();
-			
+				
 				submarine.buildShip(SHIPS.SUBMARINE, sizeSub, nameSub);
 				submarine.deployShip(sizeSub, xOSub, yOSub, axis, direction, spotsSubmarine);
-				grid.setShip(submarine);
+		
 				
-				/*for(Spot spotSubmarine : spotsSubmarine) {
-					if(spotSubmarine.getCoordinates()==grid.getSpot().getCoordinates()) {
-						grid.getSpot().setAvailable(false);
-					}
-				}
-				*/
 		//Generate strike
 				
 		//Impact		

@@ -38,10 +38,24 @@ public class Grid {
 				spot.setY(j);
 				int[][] coordinates = new int[i][j];
 				spot.setCoordinates(coordinates);
+				spot.setAvailable(true);
 				spots.add(spot);
 			}
 			
 		}
+	}
+	
+	public void checkPositionAvailable(Grid grid,Ship ship) {
+		List <Spot> spots= ship.getSpots();
+		for(Spot spot : spots) {
+		if(spot.isAvailable()==true) {
+			System.out.println("Position available");
+			grid.setShip(ship);
+		}else {
+			System.out.println("Position not available");	
+		}
+		}
+		
 	}
 
 	public int[][] getField() {

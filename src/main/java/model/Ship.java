@@ -45,8 +45,6 @@ public class Ship {
 		if (axis==AXIS.HORIZONTAL && direction==DIRECTION.PLUS) {
 			for (i = yO; i < (yO+size); i++) {
 				Spot spot = new Spot();
-				int[][] coordinates= new int[xO][i];
-				spot.setCoordinates(coordinates);
 				System.out.println(xO +";" + i);
 				position.add(spot);
 				
@@ -56,25 +54,22 @@ public class Ship {
 		if (axis==AXIS.HORIZONTAL && direction==DIRECTION.MINUS) {
 			for (i = yO; i >(yO-size); i--) {
 				Spot spot = new Spot();
-				int[][] coordinates= new int[xO][i];
-				spot.setCoordinates(coordinates);
+				System.out.println(xO +";" + i);
 				position.add(spot);
 				
 			}
 		}
 		if(axis==AXIS.VERTICAL && direction==DIRECTION.PLUS) {
-			for(i=xO; i <(yO+size); i++) {
+			for(i=xO; i <(xO+size); i++) {
 				Spot spot = new Spot();
-				int[][] coordinates= new int[i][yO];
-				spot.setCoordinates(coordinates);
+				System.out.println(i +";" + yO);
 				position.add(spot);
 			}
 			}
 		if(axis==AXIS.VERTICAL && direction==DIRECTION.MINUS) {
-			for(i=xO; i >(yO-size); i--) {
+			for(i=xO; i >(xO-size); i--) {
 				Spot spot = new Spot();
-				int[][] coordinates= new int[i][yO];
-				spot.setCoordinates(coordinates);
+				System.out.println(i +";" + yO);
 				position.add(spot);
 			}
 			}

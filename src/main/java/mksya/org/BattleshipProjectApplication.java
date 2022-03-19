@@ -47,11 +47,12 @@ public class BattleshipProjectApplication {
 				submarine.deployShip(sizeSub, xOSub, yOSub, axis, direction, spotsSubmarine);
 				grid.setShip(submarine);
 				
-				for(Spot spotSubmarine : spotsSubmarine) {
+				/*for(Spot spotSubmarine : spotsSubmarine) {
 					if(spotSubmarine.getCoordinates()==grid.getSpot().getCoordinates()) {
 						grid.getSpot().setAvailable(false);
 					}
 				}
+				*/
 		//Generate strike
 				
 		//Impact		

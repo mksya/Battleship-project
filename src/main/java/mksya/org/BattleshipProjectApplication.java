@@ -31,12 +31,28 @@ public class BattleshipProjectApplication {
 				
 		//Generate ships
 				
+				Scanner scan = new Scanner(System.in);
+				
+				Ship carrier = new Ship();
+				String nameCar = null;
+				int sizeCar=5;
+				
+
+				System.out.println("Select axis");
+				AXIS axisCar = AXIS.valueOf(scan.nextLine());
+				System.out.println("Select direction");
+				DIRECTION directionCar = DIRECTION.valueOf(scan.nextLine());
+				System.out.println("Select origin x,y");
+				int xOCar = scan.nextInt();
+				int yOCar = scan.nextInt();
+				ArrayList<Spot> positionCar= new ArrayList<Spot>();
+				
+				carrier.buildShip(grid, carrier, SHIPS.CARRIER, sizeCar, nameCar, axisCar, directionCar, xOCar, yOCar, positionCar);
 				
 				Ship submarine = new Ship();
 				String nameSub = null;
 				int sizeSub=3;
 				
-				Scanner scan = new Scanner(System.in);
 
 				System.out.println("Select axis");
 				AXIS axisSub = AXIS.valueOf(scan.nextLine());
@@ -47,10 +63,12 @@ public class BattleshipProjectApplication {
 				int yOSub = scan.nextInt();
 				ArrayList<Spot> positionSub= new ArrayList<Spot>();
 				
-				scan.close();
-				
 				submarine.buildShip(grid, submarine, SHIPS.SUBMARINE, sizeSub, nameSub, axisSub, directionSub, xOSub, yOSub, positionSub);
 				
+				
+				Fleet fleet = new Fleet();
+				fleet.generateFleet(fleet, submarine, null, null, null, null, null, null, null, null, null, null);
+				scan.close();
 				
 		//Generate strike
 				

@@ -20,8 +20,7 @@ public class Fleet {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void generateFleet(Ship carrier, Ship battleshipA, Ship battleshipB, Ship cruiserA, Ship cruiserB, Ship submarineA, Ship submarineB, Ship destroyerA, Ship destroyerB, Ship destroyerC, Ship destroyerD) {
-		Fleet fleet =new Fleet();
+	public void generateFleet(Fleet fleet, Ship carrier, Ship battleshipA, Ship battleshipB, Ship cruiserA, Ship cruiserB, Ship submarineA, Ship submarineB, Ship destroyerA, Ship destroyerB, Ship destroyerC, Ship destroyerD) {
 		List<Ship>ships=new ArrayList<Ship>();
 		
 		ships.add(carrier);

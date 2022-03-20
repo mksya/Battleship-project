@@ -20,7 +20,6 @@ public class BattleshipProjectApplication {
 
 	public static void main(String[] args) {
 		//SpringApplication.run(BattleshipProjectApplication.class, args);
-		Scanner scan = new Scanner(System.in);
 		
 		//Generate grid
 				Grid grid = new Grid();
@@ -36,11 +35,19 @@ public class BattleshipProjectApplication {
 				Ship submarine = new Ship();
 				String nameSub = null;
 				int sizeSub=3;
-				AXIS axisSub = null;
-				DIRECTION directionSub = null;
-				int xOSub = 0;
-				int yOSub = 0;
+				
+				Scanner scan = new Scanner(System.in);
+
+				System.out.println("Select axis");
+				AXIS axisSub = AXIS.valueOf(scan.nextLine());
+				System.out.println("Select direction");
+				DIRECTION directionSub = DIRECTION.valueOf(scan.nextLine());
+				System.out.println("Select origin x,y");
+				int xOSub = scan.nextInt();
+				int yOSub = scan.nextInt();
 				ArrayList<Spot> positionSub= new ArrayList<Spot>();
+				
+				scan.close();
 				
 				submarine.buildShip(grid, submarine, SHIPS.SUBMARINE, sizeSub, nameSub, axisSub, directionSub, xOSub, yOSub, positionSub);
 				
@@ -49,9 +56,6 @@ public class BattleshipProjectApplication {
 				
 		//Impact		
 			
-				
-
-				scan.close();
 	}
 
 }

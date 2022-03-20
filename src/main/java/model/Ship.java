@@ -38,22 +38,24 @@ public class Ship {
 		System.out.println(name);
 		System.out.println(size);
 		
-		ship.selectPosition(axis, direction, xO, yO);
 		ship.deployShip(axis, direction, xO, yO, position);
 		
-		if(ship.checkPositionAvailable(grid, ship)==false) {
+		if(ship.checkPositionAvailable(grid, ship, position)==false) {
 			System.out.println("Position not available");
-			ship.selectPosition(axis, direction, xO, yO);
+			ship.deployShip(axis, direction, xO, yO, position);
 		}else{
 			grid.setShip(ship);
 			grid.setSpots(position);
+			System.out.println("Ship on position");
+			System.out.println(axis);
+			System.out.println(direction);
+			System.out.println(xO+ ";"+yO);
 		};
 		
 	}
 	
-	public boolean checkPositionAvailable(Grid grid,Ship ship) {
-		List <Spot> spots= ship.getSpots();
-		for(Spot spot : spots) {
+	public boolean checkPositionAvailable(Grid grid,Ship ship, ArrayList<Spot> position) {
+		for(Spot spot : position) {
 		if(spot.isAvailable()==true) {
 			System.out.println("Position available");
 		}
@@ -62,6 +64,7 @@ public class Ship {
 	}
 
 	public void deployShip(AXIS axis, DIRECTION direction, int xO, int yO, ArrayList<Spot> position) {
+		
 		
 		int i;
 		if (axis==AXIS.HORIZONTAL && direction==DIRECTION.PLUS) {
@@ -102,19 +105,6 @@ public class Ship {
 
 	}
 	
-	public void selectPosition(AXIS axis, DIRECTION direction, int xO, int yO) {
-		Scanner scan = new Scanner(System.in);
-
-		System.out.println("Select axis");
-		axis = AXIS.valueOf(scan.nextLine());
-		System.out.println("Select direction");
-		direction = DIRECTION.valueOf(scan.nextLine());
-		System.out.println("Select origin x,y");
-		xO = scan.nextInt();
-		yO = scan.nextInt();
-		
-		scan.close();
-	}
 	
 	public SHIPS getType() {
 		return type;

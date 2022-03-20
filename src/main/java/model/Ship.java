@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import enums.AXIS;
 import enums.DIRECTION;
@@ -13,10 +14,10 @@ public class Ship {
 	private boolean sunk;
 	private int size;
 	private Spot spot;
-	private List<Spot> spots;
+	private ArrayList<Spot> spots;
 
 	
-	public Ship(SHIPS type, boolean sunk, int size, Spot spot, List<Spot> spots) {
+	public Ship(SHIPS type, boolean sunk, int size, Spot spot, ArrayList<Spot> spots) {
 		super();
 		this.type = type;
 		this.sunk = sunk;
@@ -30,16 +31,17 @@ public class Ship {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void buildShip(SHIPS type, int size, String name) {
-		Ship ship = new Ship();
+	public void buildShip(Grid grid, Ship ship, SHIPS type, int size, String name, AXIS axis, DIRECTION direction, int xO, int yO, ArrayList<Spot> position) {
 		ship.setType(type);
 		name =ship.type.name();
 		ship.setSize(size);
 		System.out.println(name);
 		System.out.println(size);
+		ship.deployShip(axis, direction, xO, yO, position);
+		
 	}
 
-	public void deployShip(int size, int xO, int yO, AXIS axis, DIRECTION direction, List<Spot> position) {
+	public void deployShip(AXIS axis, DIRECTION direction, int xO, int yO, ArrayList<Spot> position) {
 		
 		int i;
 		if (axis==AXIS.HORIZONTAL && direction==DIRECTION.PLUS) {
@@ -80,7 +82,11 @@ public class Ship {
 
 	}
 	
-
+	public void selectPosition(ArrayList<Spot> spots, AXIS axis, DIRECTION direction, int xO, int yO) {
+		Scanner scan = new Scanner(System.in);
+		scan.close();
+	}
+	
 	public SHIPS getType() {
 		return type;
 	}
@@ -113,11 +119,11 @@ public class Ship {
 		this.spot = spot;
 	}
 
-	public List<Spot> getSpots() {
+	public ArrayList<Spot> getSpots() {
 		return spots;
 	}
 
-	public void setSpots(List<Spot> spots) {
+	public void setSpots(ArrayList<Spot> spots) {
 		this.spots = spots;
 	}
 

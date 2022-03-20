@@ -27,17 +27,17 @@ public class BattleshipProjectApplication {
 				int columns=10;
 				int rows=10;
 				int field[][]= new int[columns][rows];
-				List<Spot> spots = new ArrayList<Spot>();
+				ArrayList<Spot> spots = new ArrayList<Spot>();
 				grid.generateGrid(columns,rows,field,spots);			
 				
 		//Generate ships
 				
-
+				
 				Ship submarine = new Ship();
 				String nameSub = null;
 				int sizeSub=3;
 				
-				List<Spot> spotsSubmarine = new ArrayList<Spot>();
+				ArrayList<Spot> spotsSubmarine = new ArrayList<Spot>();
 				System.out.println("Select axis");
 				AXIS axis = AXIS.valueOf(scan.nextLine());
 				System.out.println("Select direction");
@@ -46,9 +46,13 @@ public class BattleshipProjectApplication {
 				int xOSub = scan.nextInt();
 				int yOSub = scan.nextInt();
 				
-				submarine.buildShip(SHIPS.SUBMARINE, sizeSub, nameSub);
-				submarine.deployShip(sizeSub, xOSub, yOSub, axis, direction, spotsSubmarine);
-		
+				if(grid.checkPositionAvailable(grid, submarine)==false) {
+					System.out.println("Position not available");
+					submarine.selectPosition();
+				
+				}else{
+					submarine.buildShip(grid,submarine, SHIPS.SUBMARINE, sizeSub, nameSub, axis, direction, xOSub, yOSub, spotsSubmarine);
+				}
 				
 		//Generate strike
 				

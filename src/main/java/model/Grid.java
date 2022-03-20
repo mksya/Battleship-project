@@ -9,11 +9,11 @@ public class Grid {
 	private int columns;
 	private int rows;
 	private Spot spot;
-	private List<Spot> spots;
+	private ArrayList<Spot> spots;
 	private Ship ship;
 	
 
-	public Grid(int[][] field, int columns, int rows, Spot spot, List<Spot> spots, Ship ship) {
+	public Grid(int[][] field, int columns, int rows, Spot spot, ArrayList<Spot> spots, Ship ship) {
 		super();
 		this.field = field;
 		this.columns = columns;
@@ -28,7 +28,7 @@ public class Grid {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void generateGrid(int columns, int rows, int[][] axis, List<Spot> spots) {
+	public void generateGrid(int columns, int rows, int[][] axis, ArrayList<Spot> spots) {
 		spots=new ArrayList<Spot>();
 		axis = new int[columns][rows];
 		for(int i=0;i<axis.length;i++) {
@@ -45,18 +45,17 @@ public class Grid {
 		}
 	}
 	
-	public void checkPositionAvailable(Grid grid,Ship ship) {
+	public boolean checkPositionAvailable(Grid grid,Ship ship) {
 		List <Spot> spots= ship.getSpots();
 		for(Spot spot : spots) {
 		if(spot.isAvailable()==true) {
 			System.out.println("Position available");
-			grid.setShip(ship);
-		}else {
-			System.out.println("Position not available");	
 		}
 		}
-		
+		return true;
 	}
+	
+
 
 	public int[][] getField() {
 		return field;
@@ -90,11 +89,11 @@ public class Grid {
 		this.spot = spot;
 	}
 
-	public List<Spot> getSpots() {
+	public ArrayList<Spot> getSpots() {
 		return spots;
 	}
 
-	public void setSpots(List<Spot> spots) {
+	public void setSpots(ArrayList<Spot> spots) {
 		this.spots = spots;
 	}
 

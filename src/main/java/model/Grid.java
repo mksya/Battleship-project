@@ -45,17 +45,6 @@ public class Grid {
 		}
 	}
 	
-	public boolean checkPositionAvailable(Grid grid,Ship ship) {
-		List <Spot> spots= ship.getSpots();
-		for(Spot spot : spots) {
-		if(spot.isAvailable()==true) {
-			System.out.println("Position available");
-		}
-		}
-		return true;
-	}
-	
-
 
 	public int[][] getField() {
 		return field;

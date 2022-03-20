@@ -36,23 +36,14 @@ public class BattleshipProjectApplication {
 				Ship submarine = new Ship();
 				String nameSub = null;
 				int sizeSub=3;
+				AXIS axisSub = null;
+				DIRECTION directionSub = null;
+				int xOSub = 0;
+				int yOSub = 0;
+				ArrayList<Spot> positionSub= new ArrayList<Spot>();
 				
-				ArrayList<Spot> spotsSubmarine = new ArrayList<Spot>();
-				System.out.println("Select axis");
-				AXIS axis = AXIS.valueOf(scan.nextLine());
-				System.out.println("Select direction");
-				DIRECTION direction = DIRECTION.valueOf(scan.nextLine());
-				System.out.println("Select origin x,y");
-				int xOSub = scan.nextInt();
-				int yOSub = scan.nextInt();
+				submarine.buildShip(grid, submarine, SHIPS.SUBMARINE, sizeSub, nameSub, axisSub, directionSub, xOSub, yOSub, positionSub);
 				
-				if(grid.checkPositionAvailable(grid, submarine)==false) {
-					System.out.println("Position not available");
-					submarine.selectPosition();
-				
-				}else{
-					submarine.buildShip(grid,submarine, SHIPS.SUBMARINE, sizeSub, nameSub, axis, direction, xOSub, yOSub, spotsSubmarine);
-				}
 				
 		//Generate strike
 				

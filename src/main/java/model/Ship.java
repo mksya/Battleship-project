@@ -11,19 +11,19 @@ import enums.SHIPS;
 public class Ship {
 
 	private SHIPS type;
+	private Position position;
 	private boolean sunk;
 	private int size;
 	private Spot spot;
-	private ArrayList<Spot> spots;
-
 	
-	public Ship(SHIPS type, boolean sunk, int size, Spot spot, ArrayList<Spot> spots) {
+
+	public Ship(SHIPS type, Position position, boolean sunk, int size, Spot spot) {
 		super();
 		this.type = type;
+		this.position = position;
 		this.sunk = sunk;
 		this.size = size;
 		this.spot = spot;
-		this.spots = spots;
 	}
 
 	public Ship() {
@@ -31,87 +31,93 @@ public class Ship {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void buildShip(Grid grid, Ship ship, SHIPS type, int size, String name, AXIS axis, DIRECTION direction, int xO, int yO, ArrayList<Spot> position) {
+	public void buildShip(Grid grid, Ship ship, SHIPS type, int size, String name) {
+		
 		ship.setType(type);
 		name =ship.type.name();
 		ship.setSize(size);
+		ship.setPosition(position);
 		System.out.println(name);
 		System.out.println(size);
 		
-		ship.deployShip(axis, direction, xO, yO, position);
-		
-		if(ship.checkPositionAvailable(grid, ship, position)==false) {
-			System.out.println("Position not available");
-			ship.deployShip(axis, direction, xO, yO, position);
-		}else{
-			grid.setShip(ship);
-			grid.setSpots(position);
-			System.out.println("Ship on position");
-			System.out.println(axis);
-			System.out.println(direction);
-			System.out.println(xO+ ";"+yO);
-		};
+		ship.deployShip(grid);
+		System.out.println("Ship on position");
+			
 		
 	}
 	
-	public boolean checkPositionAvailable(Grid grid,Ship ship, ArrayList<Spot> position) {
-		for(Spot spot : position) {
-		if(spot.isAvailable()==true) {
-			System.out.println("Position available");
-		}
-		}
-		return true;
-	}
 
-	public void deployShip(AXIS axis, DIRECTION direction, int xO, int yO, ArrayList<Spot> position) {
+	public void deployShip(Grid grid) {
 		
+
+		Scanner scan = new Scanner(System.in);
+		
+		Position position = new Position();
+		System.out.println("Select axis");
+		position.setAxis(AXIS.valueOf(scan.nextLine()));
+		System.out.println("Select direction");
+		position.setDirection(DIRECTION.valueOf(scan.nextLine()));
+		System.out.println("Select origin x,y");
+		position.setxO(scan.nextInt());
+		position.setyO(scan.nextInt());	
+		
+		scan.close();
+		
+		ArrayList<Spot> spots = new ArrayList<Spot>();
+		position.setSpots(spots);
 		
 		int i;
-		if (axis==AXIS.HORIZONTAL && direction==DIRECTION.PLUS) {
-			for (i = yO; i < (yO+size); i++) {
+		if (position.getAxis()==AXIS.HORIZONTAL && position.getDirection()==DIRECTION.PLUS) {
+			for (i = position.getyO(); i < (position.getyO()+size); i++) {
 				Spot spot = new Spot();
 				spot.setAvailable(false);
-				System.out.println(xO +";" + i);
-				position.add(spot);
-				
+				System.out.println(position.getxO() +";" + i);
+				position.getSpots().add(spot);
 			
 			}
 		}
-		if (axis==AXIS.HORIZONTAL && direction==DIRECTION.MINUS) {
-			for (i = yO; i >(yO-size); i--) {
+		if (position.getAxis()==AXIS.HORIZONTAL && position.getDirection()==DIRECTION.MINUS) {
+			for (i = position.getyO(); i >(position.getyO()-size); i--) {
 				Spot spot = new Spot();
 				spot.setAvailable(false);
-				System.out.println(xO +";" + i);
-				position.add(spot);
+				System.out.println(position.getxO() +";" + i);
+				position.getSpots().add(spot);
 				
 			}
 		}
-		if(axis==AXIS.VERTICAL && direction==DIRECTION.PLUS) {
-			for(i=xO; i <(xO+size); i++) {
+		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.PLUS) {
+			for(i=position.getxO(); i <(position.getxO()+size); i++) {
 				Spot spot = new Spot();
 				spot.setAvailable(false);
-				System.out.println(i +";" + yO);
-				position.add(spot);
+				System.out.println(i +";" + position.getyO());
+				position.getSpots().add(spot);
 			}
 			}
-		if(axis==AXIS.VERTICAL && direction==DIRECTION.MINUS) {
-			for(i=xO; i >(xO-size); i--) {
+		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.MINUS) {
+			for(i=position.getxO(); i >(position.getxO()-size); i--) {
 				Spot spot = new Spot();
 				spot.setAvailable(false);
-				System.out.println(i +";" + yO);
-				position.add(spot);
+				System.out.println(i +";" + position.getyO());
+				position.getSpots().add(spot);
 			}
 			}
 
 	}
-	
-	
+
 	public SHIPS getType() {
 		return type;
 	}
 
 	public void setType(SHIPS type) {
 		this.type = type;
+	}
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
 	}
 
 	public boolean isSunk() {
@@ -138,15 +144,7 @@ public class Ship {
 		this.spot = spot;
 	}
 
-	public ArrayList<Spot> getSpots() {
-		return spots;
-	}
-
-	public void setSpots(ArrayList<Spot> spots) {
-		this.spots = spots;
-	}
-
 	
-	
+
 
 }

@@ -6,10 +6,10 @@ import java.util.List;
 public class Fleet {
 	
 	Ship ship;
-	List<Ship>ships;
+	ArrayList<Ship>ships;
 
 	
-	public Fleet(Ship ship, List<Ship> ships) {
+	public Fleet(Ship ship, ArrayList<Ship> ships) {
 		super();
 		this.ship = ship;
 		this.ships = ships;
@@ -20,10 +20,10 @@ public class Fleet {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void generateFleet(Fleet fleet, Ship carrier, Ship battleshipA, Ship battleshipB, Ship cruiserA, Ship cruiserB, Ship submarineA, Ship submarineB, Ship destroyerA, Ship destroyerB, Ship destroyerC, Ship destroyerD) {
-		List<Ship>ships=new ArrayList<Ship>();
+	public void generateFleet(Fleet fleet, ArrayList<Ship> ships, Ship submarine, Ship carrier, Ship battleshipA, Ship battleshipB, Ship cruiserA, Ship cruiserB, Ship submarineA, Ship submarineB, Ship destroyerA, Ship destroyerB, Ship destroyerC, Ship destroyerD) {
 		
-		ships.add(carrier);
+		
+		ships.add(submarine);
 		ships.add(battleshipA);
 		ships.add(battleshipB);
 		ships.add(cruiserA);
@@ -51,7 +51,7 @@ public class Fleet {
 		return ships;
 	}
 
-	public void setShips(List<Ship> ships) {
+	public void setShips(ArrayList<Ship> ships) {
 		this.ships = ships;
 	}
 

@@ -43,16 +43,10 @@ public class BattleshipProjectApplication {
 				Ship carrier = new Ship();
 				String nameCar = null;
 				int sizeCar=3;
+				Position positionCar = new Position();
 				
-				
-				
-				System.out.println("Tapez z");
-				int z= 22222;
-				Scanner scan2 = new Scanner(System.in);
-				while(scan2.hasNextInt()) {
-				System.out.println(scan2.nextInt());
-				scan2.close();
-				}
+				carrier.buildShip(grid, carrier, SHIPS.CARRIER, sizeCar, nameCar, positionCar);
+				scan.close();
 		//Generate strike
 				
 		//Impact		

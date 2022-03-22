@@ -62,8 +62,6 @@ public class Ship {
 		position.setxO(scan.nextInt());
 		position.setyO(scan.nextInt());	
 		
-		scan.close();
-		
 		ArrayList<Spot> spots = new ArrayList<Spot>();
 		position.setSpots(spots);
 		

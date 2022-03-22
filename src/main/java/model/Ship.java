@@ -51,6 +51,7 @@ public class Ship {
 	public void deployShip() {
 		
 
+		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		
 		Position position = new Position();

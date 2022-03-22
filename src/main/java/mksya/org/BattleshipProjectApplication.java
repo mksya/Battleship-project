@@ -31,19 +31,28 @@ public class BattleshipProjectApplication {
 				grid.generateGrid(columns,rows,field,spots);			
 				
 		//Generate ships
-				
+				Scanner scan = new Scanner(System.in);
 				Ship submarine = new Ship();
 				String nameSub = null;
 				int sizeSub=3;
+				Position positionSub = new Position();
 				
-				submarine.buildShip(grid, submarine, SHIPS.SUBMARINE, sizeSub, nameSub);
-		
+				submarine.buildShip(grid, submarine, SHIPS.SUBMARINE, sizeSub, nameSub, positionSub);
+				
+
 				Ship carrier = new Ship();
 				String nameCar = null;
-				int sizeCar=5;
+				int sizeCar=3;
 				
-				carrier.buildShip(grid, carrier, SHIPS.CARRIER, sizeCar, nameCar);
 				
+				
+				System.out.println("Tapez z");
+				int z= 22222;
+				Scanner scan2 = new Scanner(System.in);
+				while(scan2.hasNextInt()) {
+				System.out.println(scan2.nextInt());
+				scan2.close();
+				}
 		//Generate strike
 				
 		//Impact		

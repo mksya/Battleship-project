@@ -43,6 +43,8 @@ public class Grid {
 			}
 			
 		}
+		
+		System.out.println("Grid generated");
 	}
 	
 

@@ -14,8 +14,6 @@ public class Position {
 	private ArrayList<Spot> spots;
 	
 
-
-	
 	public Position(AXIS axis, DIRECTION direction, int xO, int yO, ArrayList<Spot> spots) {
 		super();
 		this.axis = axis;
@@ -26,14 +24,10 @@ public class Position {
 	}
 
 
-
-
 	public Position() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
 
 
 	public AXIS getAxis() {
@@ -41,20 +35,14 @@ public class Position {
 	}
 
 
-
-
 	public void setAxis(AXIS axis) {
 		this.axis = axis;
 	}
 
 
-
-
 	public DIRECTION getDirection() {
 		return direction;
 	}
-
-
 
 
 	public void setDirection(DIRECTION direction) {

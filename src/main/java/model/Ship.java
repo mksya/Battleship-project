@@ -31,23 +31,24 @@ public class Ship {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void buildShip(Grid grid, Ship ship, SHIPS type, int size, String name) {
+	public void buildShip(Grid grid, Ship ship, SHIPS type, int size, String name, Position position) {
 		
 		ship.setType(type);
 		name =ship.type.name();
 		ship.setSize(size);
-		ship.setPosition(position);
+		
 		System.out.println(name);
 		System.out.println(size);
 		
-		ship.deployShip(grid);
+		ship.deployShip();
+		ship.setPosition(position);
 		System.out.println("Ship on position");
 			
 		
 	}
 	
 
-	public void deployShip(Grid grid) {
+	public void deployShip() {
 		
 
 		Scanner scan = new Scanner(System.in);

@@ -28,11 +28,11 @@ public class Grid {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void generateGrid(int columns, int rows, int[][] axis, ArrayList<Spot> spots) {
+	public void generateGrid(Grid grid, int columns, int rows, int[][] field, ArrayList<Spot> spots) {
 		spots=new ArrayList<Spot>();
-		axis = new int[columns][rows];
-		for(int i=0;i<axis.length;i++) {
-			for(int j=0;j<axis[i].length;j++){
+		field = new int[columns][rows];
+		for(int i=0;i<field.length;i++) {
+			for(int j=0;j<field[i].length;j++){
 				Spot spot = new Spot();
 				spot.setX(i);
 				spot.setY(j);
@@ -40,11 +40,21 @@ public class Grid {
 				spot.setCoordinates(coordinates);
 				spot.setAvailable(true);
 				spots.add(spot);
+				grid.setSpots(spots);
 			}
 			
 		}
 		
 		System.out.println("Grid generated");
+	}
+	
+	public void blockPositionOnGrid(Grid grid, Position position) {
+		int i;
+		for(i=0;i<position.getSpots().size();i++) {
+			if(grid.getSpots().get(i).getCoordinates().equals(position.getSpots().get(i).getCoordinates())) {
+				grid.getSpot().setAvailable(false);
+			}
+		}
 	}
 	
 

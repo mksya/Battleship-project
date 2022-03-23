@@ -12,15 +12,17 @@ public class Position {
 	private int xO;
 	private int yO;
 	private ArrayList<Spot> spots;
+	private Spot spot;
 	
 
-	public Position(AXIS axis, DIRECTION direction, int xO, int yO, ArrayList<Spot> spots) {
+	public Position(AXIS axis, DIRECTION direction, int xO, int yO, ArrayList<Spot> spots, Spot spot) {
 		super();
 		this.axis = axis;
 		this.direction = direction;
 		this.xO = xO;
 		this.yO = yO;
 		this.spots = spots;
+		this.spot = spot;
 	}
 
 
@@ -50,13 +52,9 @@ public class Position {
 	}
 
 
-
-
 	public int getxO() {
 		return xO;
 	}
-
-
 
 
 	public void setxO(int xO) {
@@ -64,13 +62,9 @@ public class Position {
 	}
 
 
-
-
 	public int getyO() {
 		return yO;
 	}
-
-
 
 
 	public void setyO(int yO) {
@@ -78,17 +72,23 @@ public class Position {
 	}
 
 
-
-
 	public ArrayList<Spot> getSpots() {
 		return spots;
 	}
 
 
-
-
 	public void setSpots(ArrayList<Spot> spots) {
 		this.spots = spots;
+	}
+
+
+	public Spot getSpot() {
+		return spot;
+	}
+
+
+	public void setSpot(Spot spot) {
+		this.spot = spot;
 	}
 
 

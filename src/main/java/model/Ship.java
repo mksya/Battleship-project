@@ -39,22 +39,34 @@ public class Ship {
 		
 		System.out.println(name);
 		System.out.println(size);
-		
-		ship.deployShip();
+	
+		ship.deployShip(grid);
 		ship.setPosition(position);
-		System.out.println("Ship on position");
-			
+
 		
+		if(checkAvailability(grid.getSpots())==true) {
+		System.out.println("Ship on position");
+		}
+	}	
+		
+	public boolean checkAvailability(ArrayList<Spot> spots) {
+		int i;
+		for(i=0;i<spots.size();i++) {
+			spots.get(i).isAvailable();
+		}
+	return true;
 	}
 	
-
-	public void deployShip() {
+	public void deployShip(Grid grid) {
 		
 
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		
 		Position position = new Position();
+		ArrayList<Spot> spotsPosition = new ArrayList<Spot>();
+		ArrayList<Spot> spotsGrid = new ArrayList<Spot>();
+		
 		System.out.println("Select axis");
 		position.setAxis(AXIS.valueOf(scan.nextLine()));
 		System.out.println("Select direction");
@@ -63,44 +75,50 @@ public class Ship {
 		position.setxO(scan.nextInt());
 		position.setyO(scan.nextInt());	
 		
-		ArrayList<Spot> spots = new ArrayList<Spot>();
-		position.setSpots(spots);
-		
 		int i;
 		if (position.getAxis()==AXIS.HORIZONTAL && position.getDirection()==DIRECTION.PLUS) {
 			for (i = position.getyO(); i < (position.getyO()+size); i++) {
 				Spot spot = new Spot();
-				spot.setAvailable(false);
+				int[][] coordinates = new int[position.getxO()][i];
 				System.out.println(position.getxO() +";" + i);
-				position.getSpots().add(spot);
-			
+				spot.setCoordinates(coordinates);
+				spotsPosition.add(spot);
+				spotsGrid.add(spot);
 			}
 		}
 		if (position.getAxis()==AXIS.HORIZONTAL && position.getDirection()==DIRECTION.MINUS) {
 			for (i = position.getyO(); i >(position.getyO()-size); i--) {
 				Spot spot = new Spot();
-				spot.setAvailable(false);
+				int[][] coordinates = new int[position.getxO()][i];
 				System.out.println(position.getxO() +";" + i);
-				position.getSpots().add(spot);
-				
+				spot.setCoordinates(coordinates);
+				spotsPosition.add(spot);
+				spotsGrid.add(spot);
 			}
 		}
 		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.PLUS) {
 			for(i=position.getxO(); i <(position.getxO()+size); i++) {
 				Spot spot = new Spot();
-				spot.setAvailable(false);
+				int[][] coordinates = new int[i][position.getyO()];
 				System.out.println(i +";" + position.getyO());
-				position.getSpots().add(spot);
+				spot.setCoordinates(coordinates);
+				spotsPosition.add(spot);
+				spotsGrid.add(spot);
 			}
 			}
 		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.MINUS) {
 			for(i=position.getxO(); i >(position.getxO()-size); i--) {
 				Spot spot = new Spot();
-				spot.setAvailable(false);
+				int[][] coordinates = new int[i][position.getyO()];
 				System.out.println(i +";" + position.getyO());
-				position.getSpots().add(spot);
+				spot.setCoordinates(coordinates);
+				spotsPosition.add(spot);
+				spotsGrid.add(spot);
 			}
 			}
+		
+		position.setSpots(spotsPosition);
+		grid.blockPositionOnGrid(grid, position);
 
 	}
 

@@ -1,12 +1,8 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+
 import java.util.Set;
 
-import enums.AXIS;
-import enums.DIRECTION;
 import enums.SHIPS;
 
 public class Ship {
@@ -33,88 +29,6 @@ public class Ship {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-	public void deployShip(Grid grid, Ship ship) {
-		
-
-		@SuppressWarnings("resource")
-		Scanner scan = new Scanner(System.in);
-		
-		Position position = new Position();
-		ArrayList<Spot> spotsPosition = new ArrayList<Spot>();
-		
-		System.out.println("Select axis");
-		position.setAxis(AXIS.valueOf(scan.nextLine()));
-		System.out.println("Select direction");
-		position.setDirection(DIRECTION.valueOf(scan.nextLine()));
-		System.out.println("Select origin x,y");
-		position.setxO(scan.nextInt());
-		position.setyO(scan.nextInt());	
-		
-		int i;
-		if (position.getAxis()==AXIS.HORIZONTAL && position.getDirection()==DIRECTION.PLUS) {
-			for (i = position.getyO(); i < (position.getyO()+size); i++) {
-				Spot spot = new Spot();
-				int[][] coordinates = new int[position.getxO()][i];
-				System.out.println(position.getxO() +";" + i);
-				spot.setCoordinates(coordinates);
-				spot.setX(position.getxO());
-				spot.setY(i);
-				spotsPosition.add(spot);
-				position.setSpot(spot);
-			
-		
-			}
-		}
-		
-		if (position.getAxis()==AXIS.HORIZONTAL && position.getDirection()==DIRECTION.MINUS) {
-			for (i = position.getyO(); i >(position.getyO()-size); i--) {
-				Spot spot = new Spot();
-				int[][] coordinates = new int[position.getxO()][i];
-				System.out.println(position.getxO() +";" + i);
-				spot.setCoordinates(coordinates);
-				spot.setX(position.getxO());
-				spot.setY(i);
-				spotsPosition.add(spot);
-				position.setSpot(spot);
-				grid.setSpot(spot);
-			
-				
-			}
-		}
-		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.PLUS) {
-			for(i=position.getxO(); i <(position.getxO()+size); i++) {
-				Spot spot = new Spot();
-				int[][] coordinates = new int[i][position.getyO()];
-				System.out.println(i +";" + position.getyO());
-				spot.setCoordinates(coordinates);
-				spot.setX(position.getxO());
-				spot.setY(i);
-				spotsPosition.add(spot);
-				position.setSpot(spot);
-				grid.setSpot(spot);
-			
-			}
-			}
-		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.MINUS) {
-			for(i=position.getxO(); i >(position.getxO()-size); i--) {
-				Spot spot = new Spot();
-				int[][] coordinates = new int[i][position.getyO()];
-				System.out.println(i +";" + position.getyO());
-				spot.setCoordinates(coordinates);
-				spot.setX(position.getxO());
-				spot.setY(i);
-				spotsPosition.add(spot);
-				position.setSpot(spot);
-				grid.setSpot(spot);
-		
-			}
-			}
-		
-		position.setSpots(spotsPosition);
-
-	}
-
 
 	public SHIPS getType() {
 		return type;

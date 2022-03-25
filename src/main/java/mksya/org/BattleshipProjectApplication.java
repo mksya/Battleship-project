@@ -7,6 +7,8 @@ import java.util.Scanner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import business.GameImpl;
+import entities.Carrier;
 import model.Spot;
 import enums.AXIS;
 import enums.DIRECTION;
@@ -22,16 +24,12 @@ public class BattleshipProjectApplication {
 	public static void main(String[] args) {
 		//SpringApplication.run(BattleshipProjectApplication.class, args);
 		
-		//Generate grid
-				Grid grid = new Grid();
-				int columns=10;
-				int rows=10;
-				int field[][]= new int[columns][rows];
-	
-				grid.generateGrid(grid,columns,rows,field);	
+		GameImpl game= new GameImpl();
+		
+				game.generateField();	
+				game.generateShip();
 				
 				
-		//Generate ships
 				Scanner scan = new Scanner(System.in);
 				
 				Ship carrier = new Ship();

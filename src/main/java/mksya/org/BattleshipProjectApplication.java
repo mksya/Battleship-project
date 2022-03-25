@@ -27,8 +27,8 @@ public class BattleshipProjectApplication {
 				int columns=10;
 				int rows=10;
 				int field[][]= new int[columns][rows];
-				ArrayList<Spot> spots = new ArrayList<Spot>();
-				grid.generateGrid(grid,columns,rows,field,spots);	
+	
+				grid.generateGrid(grid,columns,rows,field);	
 				
 				
 		//Generate ships

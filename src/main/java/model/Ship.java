@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import enums.AXIS;
 import enums.DIRECTION;
@@ -14,50 +15,26 @@ public class Ship {
 	private Position position;
 	private boolean sunk;
 	private int size;
-	private Spot spot;
+	private Set<Spot> spots;
 	
 
-	public Ship(SHIPS type, Position position, boolean sunk, int size, Spot spot) {
+	public Ship(SHIPS type, Position position, boolean sunk, int size, Set<Spot> spots) {
 		super();
 		this.type = type;
 		this.position = position;
 		this.sunk = sunk;
 		this.size = size;
-		this.spot = spot;
+		this.spots = spots;
 	}
+
 
 	public Ship() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void buildShip(Grid grid, Ship ship, SHIPS type, int size, String name, Position position) {
-		
-		ship.setType(type);
-		name =ship.type.name();
-		ship.setSize(size);
-		
-		System.out.println(name);
-		System.out.println(size);
 	
-		ship.deployShip(grid);
-		ship.setPosition(position);
-
-		
-		if(checkAvailability(grid.getSpots())==true) {
-		System.out.println("Ship on position");
-		}
-	}	
-		
-	public boolean checkAvailability(ArrayList<Spot> spots) {
-		int i;
-		for(i=0;i<spots.size();i++) {
-			spots.get(i).isAvailable();
-		}
-	return true;
-	}
-	
-	public void deployShip(Grid grid) {
+	public void deployShip(Grid grid, Ship ship) {
 		
 
 		@SuppressWarnings("resource")
@@ -65,7 +42,6 @@ public class Ship {
 		
 		Position position = new Position();
 		ArrayList<Spot> spotsPosition = new ArrayList<Spot>();
-		ArrayList<Spot> spotsGrid = new ArrayList<Spot>();
 		
 		System.out.println("Select axis");
 		position.setAxis(AXIS.valueOf(scan.nextLine()));
@@ -82,18 +58,28 @@ public class Ship {
 				int[][] coordinates = new int[position.getxO()][i];
 				System.out.println(position.getxO() +";" + i);
 				spot.setCoordinates(coordinates);
+				spot.setX(position.getxO());
+				spot.setY(i);
 				spotsPosition.add(spot);
-				spotsGrid.add(spot);
+				position.setSpot(spot);
+			
+		
 			}
 		}
+		
 		if (position.getAxis()==AXIS.HORIZONTAL && position.getDirection()==DIRECTION.MINUS) {
 			for (i = position.getyO(); i >(position.getyO()-size); i--) {
 				Spot spot = new Spot();
 				int[][] coordinates = new int[position.getxO()][i];
 				System.out.println(position.getxO() +";" + i);
 				spot.setCoordinates(coordinates);
+				spot.setX(position.getxO());
+				spot.setY(i);
 				spotsPosition.add(spot);
-				spotsGrid.add(spot);
+				position.setSpot(spot);
+				grid.setSpot(spot);
+			
+				
 			}
 		}
 		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.PLUS) {
@@ -102,8 +88,12 @@ public class Ship {
 				int[][] coordinates = new int[i][position.getyO()];
 				System.out.println(i +";" + position.getyO());
 				spot.setCoordinates(coordinates);
+				spot.setX(position.getxO());
+				spot.setY(i);
 				spotsPosition.add(spot);
-				spotsGrid.add(spot);
+				position.setSpot(spot);
+				grid.setSpot(spot);
+			
 			}
 			}
 		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.MINUS) {
@@ -112,57 +102,71 @@ public class Ship {
 				int[][] coordinates = new int[i][position.getyO()];
 				System.out.println(i +";" + position.getyO());
 				spot.setCoordinates(coordinates);
+				spot.setX(position.getxO());
+				spot.setY(i);
 				spotsPosition.add(spot);
-				spotsGrid.add(spot);
+				position.setSpot(spot);
+				grid.setSpot(spot);
+		
 			}
 			}
 		
 		position.setSpots(spotsPosition);
-		grid.blockPositionOnGrid(grid, position);
 
 	}
+
 
 	public SHIPS getType() {
 		return type;
 	}
 
+
 	public void setType(SHIPS type) {
 		this.type = type;
 	}
+
 
 	public Position getPosition() {
 		return position;
 	}
 
+
 	public void setPosition(Position position) {
 		this.position = position;
 	}
+
 
 	public boolean isSunk() {
 		return sunk;
 	}
 
+
 	public void setSunk(boolean sunk) {
 		this.sunk = sunk;
 	}
+
 
 	public int getSize() {
 		return size;
 	}
 
+
 	public void setSize(int size) {
 		this.size = size;
 	}
 
-	public Spot getSpot() {
-		return spot;
+
+	public Set<Spot> getSpots() {
+		return spots;
 	}
 
-	public void setSpot(Spot spot) {
-		this.spot = spot;
-	}
 
+	public void setSpots(Set<Spot> spots) {
+		this.spots = spots;
+	}
 	
+
+
 
 
 }

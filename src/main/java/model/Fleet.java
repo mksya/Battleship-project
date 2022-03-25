@@ -5,13 +5,11 @@ import java.util.List;
 
 public class Fleet {
 	
-	Ship ship;
 	ArrayList<Ship>ships;
 
 	
-	public Fleet(Ship ship, ArrayList<Ship> ships) {
+	public Fleet(ArrayList<Ship> ships) {
 		super();
-		this.ship = ship;
 		this.ships = ships;
 	}
 
@@ -39,16 +37,7 @@ public class Fleet {
 		fleet.setShips(ships);
 	}
 
-
-	public Ship getShip() {
-		return ship;
-	}
-
-	public void setShip(Ship ship) {
-		this.ship = ship;
-	}
-
-	public List<Ship> getShips() {
+	public ArrayList<Ship> getShips() {
 		return ships;
 	}
 
@@ -56,7 +45,6 @@ public class Fleet {
 		this.ships = ships;
 	}
 
-	
-	
+
 
 }

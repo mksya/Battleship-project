@@ -4,16 +4,15 @@ public class Spot {
 	
 	private int x;
 	private int y;
-	private int[][] coordinates;
 	private boolean hit;
 	private boolean available;
+
 	
 
-public Spot(int x, int y, int[][] coordinates, boolean hit, boolean available) {
+	public Spot(int x, int y, boolean hit, boolean available) {
 		super();
 		this.x = x;
 		this.y = y;
-		this.coordinates = coordinates;
 		this.hit = hit;
 		this.available = available;
 	}
@@ -39,14 +38,6 @@ public Spot(int x, int y, int[][] coordinates, boolean hit, boolean available) {
 		this.y = y;
 	}
 
-	public int[][] getCoordinates() {
-		return coordinates;
-	}
-
-	public void setCoordinates(int[][] coordinates) {
-		this.coordinates = coordinates;
-	}
-
 	public boolean isHit() {
 		return hit;
 	}
@@ -64,6 +55,8 @@ public Spot(int x, int y, int[][] coordinates, boolean hit, boolean available) {
 	}
 
 	
+
+
 	
 	
 }

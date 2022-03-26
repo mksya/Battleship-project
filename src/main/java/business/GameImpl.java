@@ -1,7 +1,9 @@
 package business;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 import entities.Battleship;
 import entities.Carrier;
@@ -11,6 +13,7 @@ import entities.Submarine;
 import enums.AXIS;
 import enums.DIRECTION;
 import enums.SHIPS;
+import model.Fleet;
 import model.Grid;
 import model.Position;
 import model.Ship;
@@ -18,15 +21,17 @@ import model.Spot;
 
 public class GameImpl {
 
-	public void generateField() {
+	public void generateField(Spot[][] field) {
 		Grid grid = new Grid();
 		int columns=10;
 		int rows=10;
-		int[][] field = new int [columns][rows];
+		field = new Spot [columns][rows];
+	
 		System.out.println("Field generated");
 	}
 	
-	public void generateShip() {
+	public void generateFleet(Fleet fleet) {
+		ArrayList<Ship> ships = new ArrayList<Ship>();
 		Carrier carrier = new Carrier();
 		Battleship battleship1 = new Battleship();
 		Battleship battleship2 = new Battleship();
@@ -38,17 +43,36 @@ public class GameImpl {
 		Destroyer destroyer2 = new Destroyer();
 		Destroyer destroyer3 = new Destroyer();
 		Destroyer destroyer4 = new Destroyer();
+		ships.add(carrier);
+		ships.add(battleship1);
+		ships.add(battleship2);
+		ships.add(cruiser1);
+		ships.add(cruiser2);
+		ships.add(submarine1);
+		ships.add(submarine2);
+		ships.add(destroyer1);
+		ships.add(destroyer2);
+		ships.add(destroyer3);
+		ships.add(destroyer4);
+		
+		fleet.setShips(ships);
 	}
 	
+	public void deployFleet(Spot[][] field, Fleet fleet) {
+		for(Ship ship : fleet.getShips()) {
+			deployShip(field,ship);
+		}
+		
+	}
 	
-	public void deployShip(Grid grid, Ship ship) {
+	public void deployShip(Spot[][] field, Ship ship) {
 		
 
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		
 		Position position = new Position();
-		ArrayList<Spot> spotsPosition = new ArrayList<Spot>();
+		Set<Spot> spotsPosition = new HashSet<Spot>();
 		
 		System.out.println("Select axis");
 		position.setAxis(AXIS.valueOf(scan.nextLine()));
@@ -58,67 +82,36 @@ public class GameImpl {
 		position.setxO(scan.nextInt());
 		position.setyO(scan.nextInt());	
 		
+		
 		int i;
 		if (position.getAxis()==AXIS.HORIZONTAL && position.getDirection()==DIRECTION.PLUS) {
-			for (i = position.getyO(); i < (position.getyO()+size); i++) {
-				Spot spot = new Spot();
-				int[][] coordinates = new int[position.getxO()][i];
-				System.out.println(position.getxO() +";" + i);
-				spot.setCoordinates(coordinates);
-				spot.setX(position.getxO());
-				spot.setY(i);
-				spotsPosition.add(spot);
-				position.setSpot(spot);
-			
-		
+			for(i=position.getyO();i<position.getyO()-ship.getSize();i++) {
+					field[position.getxO()][i]= new Spot(position.getxO(),i,false,true);
 			}
+			
 		}
 		
 		if (position.getAxis()==AXIS.HORIZONTAL && position.getDirection()==DIRECTION.MINUS) {
-			for (i = position.getyO(); i >(position.getyO()-size); i--) {
-				Spot spot = new Spot();
-				int[][] coordinates = new int[position.getxO()][i];
-				System.out.println(position.getxO() +";" + i);
-				spot.setCoordinates(coordinates);
-				spot.setX(position.getxO());
-				spot.setY(i);
-				spotsPosition.add(spot);
-				position.setSpot(spot);
-				grid.setSpot(spot);
-			
+			for(i=position.getyO();i>position.getyO()-ship.getSize();i--) {
+					field[position.getxO()][i]= new Spot(position.getxO(),i,false,true);
+			}
+		}	
 				
+			
+		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.PLUS) {
+			for(i=position.getxO(); i <position.getxO()+ship.getSize(); i++) {
+				field[i][position.getyO()]=new Spot(i,position.getyO(),false,true);
+			
 			}
 		}
-		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.PLUS) {
-			for(i=position.getxO(); i <(position.getxO()+size); i++) {
-				Spot spot = new Spot();
-				int[][] coordinates = new int[i][position.getyO()];
-				System.out.println(i +";" + position.getyO());
-				spot.setCoordinates(coordinates);
-				spot.setX(position.getxO());
-				spot.setY(i);
-				spotsPosition.add(spot);
-				position.setSpot(spot);
-				grid.setSpot(spot);
+		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.MINUS) {
+			for(i=position.getxO(); i <position.getxO()+ship.getSize(); i++) {
+				field[i][position.getyO()]=new Spot(i,position.getyO(),false,true);
 			
 			}
-			}
-		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.MINUS) {
-			for(i=position.getxO(); i >(position.getxO()-size); i--) {
-				Spot spot = new Spot();
-				int[][] coordinates = new int[i][position.getyO()];
-				System.out.println(i +";" + position.getyO());
-				spot.setCoordinates(coordinates);
-				spot.setX(position.getxO());
-				spot.setY(i);
-				spotsPosition.add(spot);
-				position.setSpot(spot);
-				grid.setSpot(spot);
+		}
 		
-			}
-			}
-		
-		position.setSpots(spotsPosition);
+		ship.setPosition(position);
 
 	}
 	

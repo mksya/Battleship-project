@@ -15,5 +15,4 @@ public class Battleship extends Ship{
 	private int size = 4;
 	private Set<Spot> spots;
 	
-
 }

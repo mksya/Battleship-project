@@ -115,4 +115,18 @@ public class GameImpl {
 
 	}
 	
+	public void generateStrike(Spot[][]field) {
+
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+		
+		Spot spot = new Spot();
+		System.out.println("Select origin x,y");
+		spot.setX(scan.nextInt());
+		spot.setY(scan.nextInt());	
+		field[spot.getX()][spot.getY()] = new Spot(spot.getX(),spot.getY(),false,true);
+		
+		
+	}
+	
 }

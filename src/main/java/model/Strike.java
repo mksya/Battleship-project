@@ -4,13 +4,18 @@ public class Strike {
 	
 	private int x;
 	private int y;
-	private Spot spot;
+	private int size = 3;
+	private Position position;
 	
-	public Strike(int x, int y, Spot spot) {
+	
+
+
+	public Strike(int x, int y, int size, Position position) {
 		super();
 		this.x = x;
 		this.y = y;
-		this.spot = spot;
+		this.size = size;
+		this.position = position;
 	}
 
 	public Strike() {
@@ -34,15 +39,23 @@ public class Strike {
 		this.y = y;
 	}
 
-	public Spot getSpot() {
-		return spot;
+	public int getSize() {
+		return size;
 	}
 
-	public void setSpot(Spot spot) {
-		this.spot = spot;
+	public void setSize(int size) {
+		this.size = size;
 	}
 
-	
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
 	
 	
 }

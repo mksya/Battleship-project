@@ -11,16 +11,15 @@ public class Ship {
 	private Position position;
 	private boolean sunk;
 	private int size;
-	private Set<Spot> spots;
+
 	
 
-	public Ship(SHIPS type, Position position, boolean sunk, int size, Set<Spot> spots) {
+	public Ship(SHIPS type, Position position, boolean sunk, int size) {
 		super();
 		this.type = type;
 		this.position = position;
 		this.sunk = sunk;
 		this.size = size;
-		this.spots = spots;
 	}
 
 
@@ -68,18 +67,6 @@ public class Ship {
 	public void setSize(int size) {
 		this.size = size;
 	}
-
-
-	public Set<Spot> getSpots() {
-		return spots;
-	}
-
-
-	public void setSpots(Set<Spot> spots) {
-		this.spots = spots;
-	}
-	
-
 
 
 

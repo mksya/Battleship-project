@@ -18,6 +18,7 @@ import model.Grid;
 import model.Position;
 import model.Ship;
 import model.Spot;
+import model.Strike;
 
 public class GameImpl {
 
@@ -83,10 +84,12 @@ public class GameImpl {
 		position.setyO(scan.nextInt());	
 		
 		
+		
 		int i;
 		if (position.getAxis()==AXIS.HORIZONTAL && position.getDirection()==DIRECTION.PLUS) {
 			for(i=position.getyO();i<position.getyO()-ship.getSize();i++) {
 					field[position.getxO()][i]= new Spot(position.getxO(),i,false,true);
+					spotsPosition.add(field[position.getxO()][i]);
 			}
 			
 		}
@@ -94,6 +97,7 @@ public class GameImpl {
 		if (position.getAxis()==AXIS.HORIZONTAL && position.getDirection()==DIRECTION.MINUS) {
 			for(i=position.getyO();i>position.getyO()-ship.getSize();i--) {
 					field[position.getxO()][i]= new Spot(position.getxO(),i,false,true);
+					spotsPosition.add(field[position.getxO()][i]);
 			}
 		}	
 				
@@ -101,32 +105,86 @@ public class GameImpl {
 		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.PLUS) {
 			for(i=position.getxO(); i <position.getxO()+ship.getSize(); i++) {
 				field[i][position.getyO()]=new Spot(i,position.getyO(),false,true);
-			
+				spotsPosition.add(field[i][position.getyO()]);
 			}
 		}
+		
 		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.MINUS) {
 			for(i=position.getxO(); i <position.getxO()+ship.getSize(); i++) {
 				field[i][position.getyO()]=new Spot(i,position.getyO(),false,true);
-			
+				spotsPosition.add(field[i][position.getyO()]);
 			}
 		}
 		
 		ship.setPosition(position);
+		System.out.println("Ship on position");
 
 	}
 	
-	public void generateStrike(Spot[][]field) {
+	public boolean checkAvailability(Spot[][] field,Fleet fleet, Ship ship) {
+		for(Spot spotShip : ship.getPosition().getSpots()) {
+			for(Spot spotFleet : fleet.getPosition().getSpots())
+			if(spotShip.equals(spotFleet)) {
+				spotFleet.setAvailable(false);
+				System.out.println("Position not available");
+			}
+		}
+		return false;
+	}
+	
+	public void cancelShip(Ship ship) {
+		
+	}
+	
+	public void generateStrike(Spot[][]field, Strike strike) {
 
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		
-		Spot spot = new Spot();
+		Position position = new Position();
+		Set<Spot> spotsPosition = new HashSet<Spot>();
+		
+		System.out.println("Select axis");
+		position.setAxis(AXIS.valueOf(scan.nextLine()));
+		System.out.println("Select direction");
+		position.setDirection(DIRECTION.valueOf(scan.nextLine()));
 		System.out.println("Select origin x,y");
-		spot.setX(scan.nextInt());
-		spot.setY(scan.nextInt());	
-		field[spot.getX()][spot.getY()] = new Spot(spot.getX(),spot.getY(),false,true);
+		position.setxO(scan.nextInt());
+		position.setyO(scan.nextInt());	
 		
+		int i;
+		if (position.getAxis()==AXIS.HORIZONTAL && position.getDirection()==DIRECTION.PLUS) {
+			for(i=position.getyO();i<position.getyO()-strike.getSize();i++) {
+					field[position.getxO()][i]= new Spot(position.getxO(),i,false,true);
+					spotsPosition.add(field[position.getxO()][i]);
+			}
+			
+		}
 		
+		if (position.getAxis()==AXIS.HORIZONTAL && position.getDirection()==DIRECTION.MINUS) {
+			for(i=position.getyO();i>position.getyO()-strike.getSize();i--) {
+					field[position.getxO()][i]= new Spot(position.getxO(),i,false,true);
+					spotsPosition.add(field[position.getxO()][i]);
+			}
+		}	
+				
+			
+		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.PLUS) {
+			for(i=position.getxO(); i <position.getxO()+strike.getSize(); i++) {
+				field[i][position.getyO()]=new Spot(i,position.getyO(),false,true);
+				spotsPosition.add(field[i][position.getyO()]);
+			}
+		}
+		
+		if(position.getAxis()==AXIS.VERTICAL && position.getDirection()==DIRECTION.MINUS) {
+			for(i=position.getxO(); i <position.getxO()+strike.getSize(); i++) {
+				field[i][position.getyO()]=new Spot(i,position.getyO(),false,true);
+				spotsPosition.add(field[i][position.getyO()]);
+			}
+		}
+		
+		strike.setPosition(position);
+		System.out.println("Strike ready");
 	}
 	
 }

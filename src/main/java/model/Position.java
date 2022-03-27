@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Set;
+
 import enums.AXIS;
 import enums.DIRECTION;
 
@@ -9,14 +11,16 @@ public class Position {
 	private DIRECTION direction;
 	private int xO;
 	private int yO;
+	private Set<Spot> spots;
 	
-	
-	public Position(AXIS axis, DIRECTION direction, int xO, int yO) {
+
+	public Position(AXIS axis, DIRECTION direction, int xO, int yO, Set<Spot> spots) {
 		super();
 		this.axis = axis;
 		this.direction = direction;
 		this.xO = xO;
 		this.yO = yO;
+		this.spots = spots;
 	}
 
 
@@ -65,6 +69,17 @@ public class Position {
 		this.yO = yO;
 	}
 
-	
+
+	public Set<Spot> getSpots() {
+		return spots;
+	}
+
+
+	public void setSpots(Set<Spot> spots) {
+		this.spots = spots;
+	}
+
+
+
 	
 }

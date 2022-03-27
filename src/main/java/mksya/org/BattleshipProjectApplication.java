@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import business.GameImpl;
 import model.Fleet;
 import model.Spot;
+import model.Strike;
 
 @SpringBootApplication
 public class BattleshipProjectApplication {
@@ -25,11 +26,13 @@ public class BattleshipProjectApplication {
 				Scanner scan = new Scanner(System.in);
 				game.deployFleet(field, fleet);
 				
-			
+				Strike strike = new Strike();
+				game.generateStrike(field,strike);
+		
 				
-		//Generate strike
+		//Impact
 				
-		//Impact		
+				
 				scan.close();
 	}
 
